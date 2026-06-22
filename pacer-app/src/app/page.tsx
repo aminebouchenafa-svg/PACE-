@@ -7,12 +7,12 @@ import LangToggle from "@/components/LangToggle";
 import AboutModal from "@/components/AboutModal";
 
 const TXT = {
-  tagline: {
-    fr: "Percevoir · Analyser · Choisir · Exécuter · Réévaluer",
-    en: "Perceive · Analyze · Choose · Execute · Re-evaluate",
+  sub: {
+    fr: "Aide à la décision en vol",
+    en: "In-flight decision aid",
   },
   prompt: { fr: "Quelle est la menace ?", en: "What is the threat?" },
-  generic: { fr: "Démarrer un cycle générique", en: "Start a generic cycle" },
+  generic: { fr: "Cycle générique", en: "Generic cycle" },
   genericSub: { fr: "Pour toute situation imprévue", en: "For any unexpected situation" },
   threats: { fr: "Menaces fréquentes", en: "Common threats" },
 };
@@ -23,40 +23,36 @@ export default function HomePage() {
   const threats = THREATS.filter((thr) => thr.id !== "generic");
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header
-        className="sticky top-0 z-20 px-4 pt-4 pb-3"
-        style={{ background: "#141414ee", backdropFilter: "blur(10px)", borderBottom: "1px solid #2a2a2a" }}
-      >
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <h1
-                className="text-2xl font-black tracking-tight"
-                style={{ color: "#3d9eff", textShadow: "0 0 16px #3d9eff66" }}
-              >
-                ✈ PACER
-              </h1>
-            </div>
-            <div className="flex items-center gap-2">
-              <LangToggle />
-              <AboutModal />
-            </div>
+    <div className="app">
+      {/* Topbar */}
+      <div className="topbar">
+        <div style={{ flex: 1 }}>
+          <div className="title" style={{ color: "var(--blue)", letterSpacing: "0.5px" }}>
+            ✈ PACER
           </div>
-          <p className="text-xs font-mono" style={{ color: "#666" }}>
-            {TXT.tagline[lang]}
-          </p>
+          <div className="sub">{TXT.sub[lang]}</div>
         </div>
-      </header>
+        <LangToggle />
+        <AboutModal />
+      </div>
 
-      <main className="flex-1 px-4 py-5 max-w-2xl mx-auto w-full">
-        {/* Mini PACER legend */}
+      {/* Scrollable body */}
+      <div className="scroll">
+        {/* PACER legend chips */}
         <div className="flex gap-1.5 mb-5">
           {PACER_STEPS.map((s) => (
             <div
               key={s.key}
-              className="flex-1 rounded-lg py-1.5 text-center text-sm font-black"
-              style={{ background: `${s.color}14`, border: `1px solid ${s.color}33`, color: s.color }}
+              className="flex-1 text-center"
+              style={{
+                borderRadius: 8,
+                padding: "7px 0",
+                fontWeight: 800,
+                fontSize: "var(--fsl)",
+                color: s.color,
+                background: `${s.color}1a`,
+                border: `1px solid ${s.color}3a`,
+              }}
               title={s.name[lang]}
             >
               {s.key}
@@ -64,59 +60,56 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="text-sm font-semibold mb-3" style={{ color: "#888" }}>
+        <div className="mb-2" style={{ fontSize: "var(--fss)", fontWeight: 700, color: "var(--mut)" }}>
           {TXT.prompt[lang]}
-        </p>
+        </div>
 
         {/* Generic CTA */}
         <Link href="/threat/generic">
           <div
-            className="rounded-2xl p-4 mb-5 flex items-center gap-3 cursor-pointer transition-all active:scale-[0.98]"
-            style={{
-              background: `${generic.color}14`,
-              border: `1px solid ${generic.color}66`,
-              boxShadow: `0 0 20px ${generic.color}22`,
-            }}
+            className="card mb-5 flex items-center gap-3"
+            style={{ borderColor: `${generic.color}66`, cursor: "pointer" }}
           >
-            <span className="text-3xl">{generic.icon}</span>
-            <div>
-              <p className="font-bold text-base" style={{ color: generic.color }}>
+            <span style={{ fontSize: 30 }}>{generic.icon}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, color: generic.color, fontSize: "var(--fsl)" }}>
                 {TXT.generic[lang]}
-              </p>
-              <p className="text-xs" style={{ color: "#999" }}>
+              </div>
+              <div style={{ fontSize: "var(--fss)", color: "var(--mut)" }}>
                 {TXT.genericSub[lang]}
-              </p>
+              </div>
             </div>
+            <span style={{ color: "var(--faint)", fontSize: 22 }}>→</span>
           </div>
         </Link>
 
-        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#666" }}>
+        <div
+          className="mb-3"
+          style={{ fontSize: "var(--fsxs)", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--faint)" }}
+        >
           {TXT.threats[lang]}
-        </p>
+        </div>
 
+        {/* Threat grid */}
         <div className="grid grid-cols-2 gap-3">
           {threats.map((thr) => (
             <Link href={`/threat/${thr.id}`} key={thr.id}>
               <div
-                className="rounded-xl p-4 h-full cursor-pointer transition-all duration-200 active:scale-95 hover:scale-[1.02]"
-                style={{
-                  background: "#1f1f1f",
-                  border: `1px solid ${thr.color}44`,
-                  boxShadow: `0 0 14px ${thr.color}1c, inset 0 0 20px ${thr.color}08`,
-                }}
+                className="card h-full"
+                style={{ borderColor: `${thr.color}40`, cursor: "pointer" }}
               >
-                <div className="text-3xl mb-2">{thr.icon}</div>
-                <div className="text-sm font-bold leading-tight mb-1" style={{ color: thr.color }}>
+                <div style={{ fontSize: 28, marginBottom: 8 }}>{thr.icon}</div>
+                <div style={{ fontWeight: 700, color: thr.color, fontSize: "var(--fss)", lineHeight: 1.2, marginBottom: 4 }}>
                   {thr.title[lang]}
                 </div>
-                <div className="text-xs leading-snug" style={{ color: "#888" }}>
+                <div style={{ fontSize: "var(--fsxs)", color: "var(--mut)", lineHeight: 1.3 }}>
                   {thr.subtitle[lang]}
                 </div>
               </div>
             </Link>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

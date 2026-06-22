@@ -24,6 +24,7 @@ const TXT = {
     fr: "Aide à la décision — ne remplace ni le QRH, ni les SOP, ni le jugement du commandant de bord.",
     en: "Decision aid — does not replace the QRH, the SOP, or the captain's judgement.",
   },
+  close: { fr: "Fermer", en: "Close" },
 };
 
 const STEP_DESC: Record<string, { fr: string; en: string }> = {
@@ -40,89 +41,66 @@ export default function AboutModal() {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm transition-all"
-        style={{ background: "#2a2a2a", border: "1px solid #444", color: "#aaa" }}
-        title={TXT.title[lang]}
-      >
+      <button className="btn" onClick={() => setOpen(true)} title={TXT.title[lang]} style={{ padding: "6px 11px" }}>
         ?
       </button>
 
       {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
-          style={{ background: "rgba(0,0,0,0.85)" }}
-          onClick={(e) => e.target === e.currentTarget && setOpen(false)}
-        >
-          <div
-            className="w-full max-w-lg rounded-2xl overflow-y-auto max-h-[90vh]"
-            style={{ background: "#1e1e1e", border: "1px solid #333" }}
-          >
-            <div
-              className="flex items-center justify-between p-4 sticky top-0"
-              style={{ background: "#1e1e1e", borderBottom: "1px solid #2e2e2e" }}
-            >
-              <h2 className="font-bold text-base" style={{ color: "#f0f0f0" }}>
-                {TXT.title[lang]}
+        <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
+          <div className="modal-box">
+            <div className="flex items-center justify-between mb-4">
+              <h2 style={{ fontWeight: 700, fontSize: "var(--fsl)", color: "#F1F5F9" }}>
+                <span style={{ color: "var(--blue)" }}>PACER</span> — {TXT.title[lang]}
               </h2>
-              <button onClick={() => setOpen(false)} className="text-2xl leading-none" style={{ color: "#666" }}>
+              <button onClick={() => setOpen(false)} style={{ background: "none", border: "none", color: "var(--mut)", fontSize: 26, lineHeight: 1, cursor: "pointer" }}>
                 ×
               </button>
             </div>
 
-            <div className="p-4 space-y-5">
-              <p className="text-sm leading-relaxed" style={{ color: "#c0c0c0" }}>
-                {TXT.intro[lang]}
-              </p>
+            <p className="mb-4" style={{ fontSize: "var(--fss)", color: "var(--mut)", lineHeight: 1.5 }}>
+              {TXT.intro[lang]}
+            </p>
 
-              <div className="space-y-2">
-                {PACER_STEPS.map((s) => (
-                  <div
-                    key={s.key}
-                    className="flex gap-3 rounded-xl p-3"
-                    style={{ background: `${s.color}0d`, border: `1px solid ${s.color}33` }}
+            <div className="space-y-2 mb-4">
+              {PACER_STEPS.map((s) => (
+                <div key={s.key} className="card flex gap-3" style={{ borderColor: `${s.color}33`, background: `${s.color}0d` }}>
+                  <span
+                    className="flex-shrink-0 flex items-center justify-center"
+                    style={{ width: 32, height: 32, borderRadius: 8, fontWeight: 900, fontSize: "var(--fsl)", color: s.color, background: "#00000033" }}
                   >
-                    <span
-                      className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-lg font-black"
-                      style={{ color: s.color, textShadow: `0 0 8px ${s.color}88`, background: "#00000033" }}
-                    >
-                      {s.key}
-                    </span>
-                    <div>
-                      <p className="text-sm font-bold" style={{ color: s.color }}>
-                        {s.name[lang]}
-                      </p>
-                      <p className="text-xs leading-relaxed mt-0.5" style={{ color: "#a0a0a0" }}>
-                        {STEP_DESC[s.key][lang]}
-                      </p>
+                    {s.key}
+                  </span>
+                  <div>
+                    <div style={{ fontWeight: 700, color: s.color, fontSize: "var(--fss)" }}>{s.name[lang]}</div>
+                    <div style={{ fontSize: "var(--fsxs)", color: "var(--mut)", lineHeight: 1.4, marginTop: 2 }}>
+                      {STEP_DESC[s.key][lang]}
                     </div>
                   </div>
-                ))}
-              </div>
-
-              <section className="rounded-xl p-3" style={{ background: "#bf7fff0d", border: "1px solid #bf7fff33" }}>
-                <h3 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#bf7fff" }}>
-                  {TXT.loopTitle[lang]}
-                </h3>
-                <p className="text-xs leading-relaxed" style={{ color: "#a0a0a0" }}>
-                  {TXT.loop[lang]}
-                </p>
-              </section>
-
-              <section className="rounded-xl p-3" style={{ background: "#39ff140d", border: "1px solid #39ff1433" }}>
-                <h3 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#39ff14" }}>
-                  {TXT.golden[lang]}
-                </h3>
-                <p className="text-xs leading-relaxed" style={{ color: "#a0a0a0" }}>
-                  {TXT.goldenTxt[lang]}
-                </p>
-              </section>
-
-              <div className="rounded-xl p-3 text-xs text-center leading-relaxed" style={{ background: "#252525", color: "#777" }}>
-                {TXT.disclaimer[lang]}
-              </div>
+                </div>
+              ))}
             </div>
+
+            <div className="card mb-3" style={{ borderColor: "#F9731633", background: "#F973160d" }}>
+              <div style={{ fontSize: "var(--fsxs)", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "var(--orange)", marginBottom: 4 }}>
+                {TXT.loopTitle[lang]}
+              </div>
+              <div style={{ fontSize: "var(--fsxs)", color: "var(--mut)", lineHeight: 1.5 }}>{TXT.loop[lang]}</div>
+            </div>
+
+            <div className="card mb-3" style={{ borderColor: "#10B98133", background: "#10B9810d" }}>
+              <div style={{ fontSize: "var(--fsxs)", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: "var(--green)", marginBottom: 4 }}>
+                {TXT.golden[lang]}
+              </div>
+              <div style={{ fontSize: "var(--fsxs)", color: "var(--mut)", lineHeight: 1.5 }}>{TXT.goldenTxt[lang]}</div>
+            </div>
+
+            <div className="mb-4" style={{ fontSize: "var(--fsxs)", textAlign: "center", color: "var(--faint)", lineHeight: 1.5 }}>
+              {TXT.disclaimer[lang]}
+            </div>
+
+            <button className="btn btn-primary w-full" onClick={() => setOpen(false)} style={{ background: "var(--blue)", borderColor: "var(--blue)" }}>
+              {TXT.close[lang]}
+            </button>
           </div>
         </div>
       )}

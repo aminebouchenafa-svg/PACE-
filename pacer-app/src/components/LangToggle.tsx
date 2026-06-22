@@ -7,8 +7,8 @@ export default function LangToggle() {
 
   return (
     <div
-      className="flex items-center rounded-full p-0.5 text-xs font-bold"
-      style={{ background: "#2a2a2a", border: "1px solid #444" }}
+      className="flex items-center"
+      style={{ background: "var(--surf2)", border: "1px solid var(--bord)", borderRadius: 6, padding: 2 }}
     >
       {(["fr", "en"] as const).map((l) => {
         const active = lang === l;
@@ -16,10 +16,16 @@ export default function LangToggle() {
           <button
             key={l}
             onClick={() => setLang(l)}
-            className="px-2.5 py-1 rounded-full transition-all uppercase"
             style={{
-              background: active ? "#3d9eff" : "transparent",
-              color: active ? "#06121f" : "#888",
+              padding: "4px 9px",
+              borderRadius: 4,
+              fontSize: "var(--fsxs)",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              border: "none",
+              cursor: "pointer",
+              background: active ? "var(--blue)" : "transparent",
+              color: active ? "#fff" : "var(--mut)",
             }}
           >
             {l}

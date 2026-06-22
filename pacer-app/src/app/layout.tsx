@@ -12,15 +12,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#141414",
+  maximumScale: 1,
+  themeColor: "#0A0C10",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className="h-full">
-      <body className="min-h-full flex flex-col antialiased" style={{ background: "#141414", color: "#f0f0f0" }}>
+    <html lang="fr">
+      <body>
         <LangProvider>{children}</LangProvider>
       </body>
     </html>

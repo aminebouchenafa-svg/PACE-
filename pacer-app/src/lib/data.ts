@@ -13,31 +13,31 @@ export const PACER_STEPS: {
 }[] = [
   {
     key: "P",
-    color: "#00f5ff",
+    color: "#3B82F6",
     name: { fr: "Percevoir", en: "Perceive" },
     question: { fr: "Que se passe-t-il vraiment ?", en: "What is actually happening?" },
   },
   {
     key: "A",
-    color: "#ffb000",
+    color: "#F59E0B",
     name: { fr: "Analyser", en: "Analyze" },
     question: { fr: "Quelles options ? Quels risques ?", en: "What options? What risks?" },
   },
   {
     key: "C",
-    color: "#39ff14",
+    color: "#10B981",
     name: { fr: "Choisir", en: "Choose" },
     question: { fr: "Quelle est la meilleure option ?", en: "Which option is best?" },
   },
   {
     key: "E",
-    color: "#3d9eff",
+    color: "#8B5CF6",
     name: { fr: "Exécuter", en: "Execute" },
     question: { fr: "Comment l'appliquer maintenant ?", en: "How do I act on it now?" },
   },
   {
     key: "R",
-    color: "#bf7fff",
+    color: "#F97316",
     name: { fr: "Réévaluer", en: "Re-evaluate" },
     question: { fr: "Ça marche ? Sinon, on recommence.", en: "Is it working? If not, loop back." },
   },
@@ -56,7 +56,7 @@ export const THREATS: Threat[] = [
   {
     id: "generic",
     icon: "⚠️",
-    color: "#ff9500",
+    color: "#3B82F6",
     title: { fr: "Menace générique", en: "Generic threat" },
     subtitle: {
       fr: "N'importe quelle situation imprévue",
@@ -99,7 +99,7 @@ export const THREATS: Threat[] = [
   {
     id: "engine-failure",
     icon: "🛑",
-    color: "#ff3b30",
+    color: "#EF4444",
     title: { fr: "Panne moteur", en: "Engine failure" },
     subtitle: { fr: "Perte totale ou partielle de puissance", en: "Total or partial power loss" },
     steps: [
@@ -136,7 +136,7 @@ export const THREATS: Threat[] = [
   {
     id: "fire-smoke",
     icon: "🔥",
-    color: "#ff6b00",
+    color: "#F97316",
     title: { fr: "Feu / Fumée", en: "Fire / Smoke" },
     subtitle: { fr: "Le temps joue contre toi", en: "Time is against you" },
     steps: [
@@ -168,7 +168,7 @@ export const THREATS: Threat[] = [
   {
     id: "imc",
     icon: "☁️",
-    color: "#5ac8fa",
+    color: "#3B82F6",
     title: { fr: "IMC inattendu", en: "Unexpected IMC" },
     subtitle: { fr: "Entrée dans les nuages en VFR", en: "VFR flight into the clouds" },
     steps: [
@@ -200,7 +200,7 @@ export const THREATS: Threat[] = [
   {
     id: "system-failure",
     icon: "⚡",
-    color: "#ffd60a",
+    color: "#F59E0B",
     title: { fr: "Panne système", en: "System failure" },
     subtitle: { fr: "Électrique, hydraulique, avionique…", en: "Electrical, hydraulic, avionics…" },
     steps: [
@@ -232,7 +232,7 @@ export const THREATS: Threat[] = [
   {
     id: "gear",
     icon: "🛬",
-    color: "#30d158",
+    color: "#10B981",
     title: { fr: "Problème de train", en: "Gear malfunction" },
     subtitle: { fr: "Train non sorti / non verrouillé", en: "Gear unsafe / not down-and-locked" },
     steps: [
@@ -263,7 +263,7 @@ export const THREATS: Threat[] = [
   {
     id: "medical",
     icon: "🩺",
-    color: "#ff2d55",
+    color: "#EF4444",
     title: { fr: "Urgence médicale", en: "Medical emergency" },
     subtitle: { fr: "Passager ou membre d'équipage", en: "Passenger or crew member" },
     steps: [
@@ -293,7 +293,7 @@ export const THREATS: Threat[] = [
   {
     id: "fuel",
     icon: "⛽",
-    color: "#ff9f0a",
+    color: "#F59E0B",
     title: { fr: "Problème carburant", en: "Fuel problem" },
     subtitle: { fr: "Fuite, faible niveau, déséquilibre", en: "Leak, low level, imbalance" },
     steps: [
@@ -324,7 +324,7 @@ export const THREATS: Threat[] = [
   {
     id: "disorientation",
     icon: "🌀",
-    color: "#bf5af2",
+    color: "#8B5CF6",
     title: { fr: "Désorientation spatiale", en: "Spatial disorientation" },
     subtitle: { fr: "Tes sensations te mentent", en: "Your senses are lying to you" },
     steps: [
@@ -353,7 +353,7 @@ export const THREATS: Threat[] = [
   {
     id: "icing",
     icon: "❄️",
-    color: "#64d2ff",
+    color: "#3B82F6",
     title: { fr: "Givrage", en: "Icing" },
     subtitle: { fr: "Perte de performance et de portance", en: "Loss of performance and lift" },
     steps: [
@@ -383,7 +383,7 @@ export const THREATS: Threat[] = [
   {
     id: "incapacitation",
     icon: "😵",
-    color: "#ac8e68",
+    color: "#8B5CF6",
     title: { fr: "Incapacité pilote", en: "Pilot incapacitation" },
     subtitle: { fr: "Un pilote hors de combat", en: "A pilot out of action" },
     steps: [

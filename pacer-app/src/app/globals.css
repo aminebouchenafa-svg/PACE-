@@ -1,18 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --bg-base: #141414;
-  --text-primary: #f0f0f0;
-}
+  --bg: #0A0C10;
+  --surf: #0F1218;
+  --surf2: #141920;
+  --bord: #1E2530;
+  --text: #E2E8F0;
+  --mut: #64748B;
+  --faint: #334155;
 
-body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --blue: #3B82F6;
+  --green: #10B981;
+  --red: #EF4444;
+  --orange: #F97316;
+  --yellow: #F59E0B;
+  --purple: #8B5CF6;
+
+  --fsxs: clamp(10px, 2vw, 12px);
+  --fss: clamp(12px, 2.4vw, 14px);
+  --fs: clamp(14px, 2.8vw, 17px);
+  --fsl: clamp(16px, 3.2vw, 20px);
+  --fsxl: clamp(20px, 3.6vw, 26px);
 }
 
 * { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--fs);
+}
+
+/* App shell: fixed topbar/tabs + scrollable body + fixed bottom bar */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--bord);
+  flex-shrink: 0;
+}
+.topbar .title {
+  font-size: var(--fsl);
+  font-weight: 700;
+  color: #F1F5F9;
+  line-height: 1.15;
+}
+.topbar .sub {
+  font-size: var(--fsxs);
+  color: var(--mut);
+}
+
+.tabs {
+  display: flex;
+  background: var(--bg);
+  border-bottom: 1px solid var(--bord);
+  flex-shrink: 0;
+}
+.tab {
+  flex: 1;
+  padding: 12px 6px;
+  font-size: var(--fsl);
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  background: var(--bg);
+  color: var(--faint);
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.card {
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: var(--fss);
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--bord);
+  background: #1A1F2E;
+  color: #94A3B8;
+  transition: filter 0.15s, transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { color: #fff; font-weight: 700; }
+
+.bottom-bar {
+  display: flex;
+  gap: 10px;
+  padding: 11px 13px;
+  padding-bottom: max(11px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bord);
+  background: var(--surf);
+  flex-shrink: 0;
+}
+
+.chip {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: var(--fss);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000CC;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 500;
+}
+.modal-box {
+  background: var(--surf);
+  border: 1px solid var(--bord);
+  border-radius: 16px 16px 0 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #141414; }
-::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #2D3748; border-radius: 2px; }
