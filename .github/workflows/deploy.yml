@@ -34,7 +34,7 @@ jobs:
         run: npm run build
         working-directory: pacer-app
         env:
-          NEXT_PUBLIC_BASE_PATH: /pace-
+          NEXT_PUBLIC_BASE_PATH: /PACE-
 
       - uses: actions/upload-pages-artifact@v3
         with:
